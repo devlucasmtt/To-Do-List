@@ -56,8 +56,7 @@ ul {
 
 li {
     position: relative;
-    
-    padding: 10px;
+    padding: 1px;
     border-bottom: 1px solid #ccc;
     text-align: left;
     width: 100%;
@@ -69,4 +68,25 @@ li:last-child {
 
 li:hover .removeTaskButton {
     opacity: 1; /* Torna o botão visível ao passar o mouse */
+}
+
+.footer {
+    position: fixed;       /* Fixa a seção na parte inferior da página */
+    bottom: 0;            /* Alinha a seção ao fundo */
+    left: 0;              /* Alinha a seção à esquerda */
+    right: 0;             /* Alinha a seção à direita */
+    background-color: rgba(255, 255, 255, 0.9); /* Cor de fundo branca com leve transparência */
+    text-align: center;   /* Centraliza o texto */
+    padding: 1px;        /* Adiciona espaçamento interno */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave acima da seção */
+    font-size: 14px;      /* Tamanho da fonte */
+}
+
+.footer a {
+    color: #5cb85c;       /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado do link */
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Sublinha o link ao passar o mouse */
 }
