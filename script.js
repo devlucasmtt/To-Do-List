@@ -1,5 +1,12 @@
 document.getElementById('addTaskButton').addEventListener('click', addTask);
 
+// Adiciona um listener de evento para a tecla pressionada no campo de entrada
+document.getElementById('taskInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') { // Verifica se a tecla pressionada é Enter
+        addTask(); // Chama a função addTask
+    }
+});
+
 function addTask() {
     const taskInput = document.getElementById('taskInput');
     const taskText = taskInput.value;
