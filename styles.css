@@ -33,42 +33,38 @@ input[type="text"] {
     border-radius: 4px 0 0 4px;
 }
 
-.icon-button {
-    width: 40px; 
-    height: 40px;
-    padding: 0; 
-    background: #1a491a;
-    color: white;
-    border: none;
-    border-radius: 50%; 
-    cursor: pointer;
-    font-size: 35px;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+/* Estilos uniformes para os botões */
+.icon-buttons {
+    display: flex; /* Para alinhar os botões lado a lado */
+    gap: 5px; /* Espaço entre os botões */
 }
 
-.icon-button:hover {
-    background: #4cae4c;
+.icon-buttons button {
+    background-color: #282d69; /* Cor de fundo padrão */
+    color: white; /* Cor do texto (ou ícone) */
+    border: 0.2px solid #1f1f1f5d; /* Borda fina e suave */
+    border-radius: 5px; /* Bordas arredondadas */
+    width: 40px; /* Largura fixa para todos os botões */
+    height: 40px; /* Altura fixa para todos os botões */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    font-size: 20px; /* Tamanho da fonte */
+    padding: 5; /* Remove padding para centralizar o ícone */
+    display: flex; /* Alinha o conteúdo do botão */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição suave */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    margin-right: 0;
 }
 
-.removeTaskButton, .editTaskButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+/* Margem apenas ao primeiro botão */
+.icon-buttons button:first-child {
+    margin-left: 90px; /* Margem à esquerda do primeiro botão */
 }
 
-.removeTaskButton {
-    color: red;
-}
-
-.editTaskButton {
-    color: green;
-}
-
-.removeTaskButton:hover, .editTaskButton:hover {
-    opacity: 0.7;
+.icon-buttons button:hover {
+    background-color: #4cae4c; /* Cor de fundo ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
 }
 
 ul {
@@ -87,11 +83,18 @@ li {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
+
 }
 
 li span {
     flex-grow: 1; 
 }
+
+.completed {
+    text-decoration: line-through; /* Risca o texto */
+    background-color: #3e2566; /* Altera a cor de fundo (opcional) */
+}
+
 .footer {
     position: fixed;       /* Fixa a seção na parte inferior da página */
     bottom: 0;            /* Alinha a seção ao fundo */

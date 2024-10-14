@@ -47,21 +47,31 @@ function addTask() {
         editTask(listItem, taskTextElement);
     });
 
+    // Botão de completar (com ícone de check)
+    const completeButton = document.createElement('button');
+    completeButton.innerHTML = '&#10003;'; // Ícone de check
+    completeButton.className = 'completeTaskButton';
+
+    // Evento de clique para marcar a tarefa como concluída
+    completeButton.addEventListener('click', function() {
+        listItem.classList.toggle('completed'); // Adiciona ou remove a classe 'completed'
+        saveTasks(); // Salva as tarefas após a alteração
+    });
+
     // Adiciona os botões ao contêiner de ícones
     iconContainer.appendChild(removeButton);
     iconContainer.appendChild(editButton);
+    iconContainer.appendChild(completeButton); // Adiciona o botão de completar
 
     // Adiciona o contêiner de ícones e o texto ao item da lista
     listItem.appendChild(taskTextElement); 
     listItem.appendChild(iconContainer); 
-
 
     // Adiciona o item da lista à lista de tarefas
     taskList.appendChild(listItem);
     taskInput.value = ''; // Limpa o campo de entrada
 
     saveTasks(); // Salva as tarefas no Local Storage
-
 }
 
 function removeTask(listItem) {
@@ -74,6 +84,7 @@ function editTask(listItem, taskTextElement) {
     const newTaskText = prompt('Edite a tarefa:', taskTextElement.textContent);
     if (newTaskText !== null && newTaskText.trim() !== '') {
         taskTextElement.textContent = newTaskText;
+        saveTasks(); // Salva as tarefas após edição
     }
 }
 
@@ -81,7 +92,9 @@ function saveTasks() {
     const tasks = [];
     const taskList = document.getElementById('taskList').children;
     for (let task of taskList) {
-        tasks.push(task.firstChild.textContent); // Adiciona o texto da tarefa ao array
+        const taskText = task.firstChild.textContent; // Texto da tarefa
+        const isCompleted = task.classList.contains('completed'); // Verifica se está concluída
+        tasks.push({ text: taskText, completed: isCompleted }); // Salva texto e estado
     }
     localStorage.setItem('tasks', JSON.stringify(tasks)); // Salva o array no Local Storage
 }
@@ -90,7 +103,7 @@ function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || []; // Recupera tarefas do Local Storage
     const taskList = document.getElementById('taskList');
 
-    for (let taskText of tasks) {
+    for (let task of tasks) {
         const listItem = document.createElement('li');
         
         // Cria um contêiner para o texto da tarefa e os botões
@@ -99,7 +112,12 @@ function loadTasks() {
 
         // Cria um elemento para o texto da tarefa
         const taskTextElement = document.createElement('span');
-        taskTextElement.textContent = taskText;
+        taskTextElement.textContent = task.text;
+
+        // Adiciona a classe 'completed' se a tarefa estiver concluída
+        if (task.completed) {
+            listItem.classList.add('completed');
+        }
 
         // Botão de remover (com ícone de X)
         const removeButton = document.createElement('button');
@@ -117,9 +135,21 @@ function loadTasks() {
             editTask(listItem, taskTextElement);
         });
 
+        // Botão de completar (com ícone de check)
+        const completeButton = document.createElement('button');
+        completeButton.innerHTML = '&#10003;'; // Ícone de check
+        completeButton.className = 'completeTaskButton';
+
+        // Evento de clique para marcar a tarefa como concluída
+        completeButton.addEventListener('click', function() {
+            listItem.classList.toggle('completed'); // Adiciona ou remove a classe 'completed'
+            saveTasks(); // Salva as tarefas após a alteração
+        });
+
         // Adiciona os botões ao contêiner de ícones
         iconContainer.appendChild(removeButton);
         iconContainer.appendChild(editButton);
+        iconContainer.appendChild(completeButton); // Adiciona o botão de completar
 
         // Adiciona o contêiner de ícones e o texto ao item da lista
         listItem.appendChild(taskTextElement); 
@@ -129,4 +159,5 @@ function loadTasks() {
         taskList.appendChild(listItem);
     }
 }
+
 document.addEventListener('DOMContentLoaded', loadTasks); // Carrega as tarefas ao iniciar
