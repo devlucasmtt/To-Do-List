@@ -11,22 +11,44 @@ function addTask() {
 
     const taskList = document.getElementById('taskList');
     const listItem = document.createElement('li');
-    listItem.textContent = taskText;
 
-    // Cria o botão de remover
+    // Cria um contêiner para o texto da tarefa e os botões
+    const iconContainer = document.createElement('div');
+    iconContainer.className = 'icon-buttons'; // Classe CSS para o grupo de botões
+
+    // Cria um elemento para o texto da tarefa
+    const taskTextElement = document.createElement('span');
+    taskTextElement.textContent = taskText;
+
+    // Botão de remover (com ícone de X)
     const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remover';
-    removeButton.className = 'removeTaskButton'; // Adiciona uma classe para o botão
-    removeButton.style.marginLeft = '10px'; // Para adicionar um espaço entre o texto da tarefa e o botão
+    removeButton.innerHTML = '&times;';
+    removeButton.className = 'removeTaskButton';
 
     // Adiciona um evento de clique ao botão de remover
     removeButton.addEventListener('click', function() {
-        removeTask(listItem); // Passa o listItem para a função removeTask
+        removeTask(listItem);
     });
 
-    // Adiciona o botão de remover ao item da lista
-    listItem.appendChild(removeButton);
-    
+    // Botão de editar (com ícone de lápis)
+    const editButton = document.createElement('button');
+    editButton.innerHTML = '&#9998;';
+    editButton.className = 'editTaskButton';
+
+    // Adiciona o evento de editar
+    editButton.addEventListener('click', function() {
+        editTask(listItem, taskTextElement);
+    });
+
+    // Adiciona os botões ao contêiner de ícones
+    iconContainer.appendChild(removeButton);
+    iconContainer.appendChild(editButton);
+
+    // Adiciona o contêiner de ícones e o texto ao item da lista
+    listItem.appendChild(taskTextElement); 
+    listItem.appendChild(iconContainer); 
+
+
     // Adiciona o item da lista à lista de tarefas
     taskList.appendChild(listItem);
     taskInput.value = ''; // Limpa o campo de entrada
@@ -35,4 +57,11 @@ function addTask() {
 function removeTask(listItem) {
     const taskList = document.getElementById('taskList');
     taskList.removeChild(listItem);
+}
+
+function editTask(listItem, taskTextElement) {
+    const newTaskText = prompt('Edite a tarefa:', taskTextElement.textContent);
+    if (newTaskText !== null && newTaskText.trim() !== '') {
+        taskTextElement.textContent = newTaskText;
+    }
 }

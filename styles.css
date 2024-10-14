@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url(background.jpg);
     margin: 0;
     padding: 0;
 }
@@ -9,12 +9,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 430px;
     margin: 50px auto;
     padding: 20px;
-    background: rgb(255, 255, 255);
+    background: #262c77;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.input-container {
+    display: flex;
+    width: 100%;
 }
 
 h1 {
@@ -22,31 +27,48 @@ h1 {
 }
 
 input[type="text"] {
-    width: calc(100% - 50px);
+    flex: 1; /* Ocupará todo o espaço disponível */
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 4px 0 0 4px;
 }
 
-button {
-    padding: 10px;
-    margin-left: 5px;
-    margin-top: 5px;
-    border: none;
-    background: #5cb85c;
+.icon-button {
+    width: 40px; 
+    height: 40px;
+    padding: 0; 
+    background: #1a491a;
     color: white;
-    border-radius: 4px;
+    border: none;
+    border-radius: 50%; 
     cursor: pointer;
+    font-size: 35px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
 
-.removeTaskButton{
-        right: 10px; /* Lateral direita do item */
-        opacity: 0; /* Inicialmente invisível */
-        transition: opacity 0.3s; /* Animação suave ao aparecer/desaparecer */
-}
-
-button:hover {
+.icon-button:hover {
     background: #4cae4c;
+}
+
+.removeTaskButton, .editTaskButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.removeTaskButton {
+    color: red;
+}
+
+.editTaskButton {
+    color: green;
+}
+
+.removeTaskButton:hover, .editTaskButton:hover {
+    opacity: 0.7;
 }
 
 ul {
@@ -56,26 +78,26 @@ ul {
 
 li {
     position: relative;
-    padding: 1px;
-    border-bottom: 1px solid #ccc;
+    padding: 5px;
     text-align: left;
-    width: 100%;
+    background-color: #2f347a; 
+    border-radius: 5px; 
+    margin-bottom: 5px; 
+    box-sizing: border-box; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
 }
 
-li:last-child {
-    border-bottom: none;
+li span {
+    flex-grow: 1; 
 }
-
-li:hover .removeTaskButton {
-    opacity: 1; /* Torna o botão visível ao passar o mouse */
-}
-
 .footer {
     position: fixed;       /* Fixa a seção na parte inferior da página */
     bottom: 0;            /* Alinha a seção ao fundo */
     left: 0;              /* Alinha a seção à esquerda */
     right: 0;             /* Alinha a seção à direita */
-    background-color: rgba(255, 255, 255, 0.9); /* Cor de fundo branca com leve transparência */
+    background-color: #0c2fcae6; /* Cor de fundo branca com leve transparência */
     text-align: center;   /* Centraliza o texto */
     padding: 1px;        /* Adiciona espaçamento interno */
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave acima da seção */
