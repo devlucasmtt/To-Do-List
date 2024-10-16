@@ -10,11 +10,22 @@
     <div class="container">
         <h1>To-Do List</h1>
         <div class="input-container">
-            <input type="text" maxlength="25" id="taskInput" placeholder="Adicione uma nova tarefa...">
+            <input type="text" maxlength="30" id="taskInput" placeholder="Adicione uma nova tarefa...">
+            
+            <input type="text" maxlength="200" id="descriptionInput" placeholder="Digite a descrição da tarefa">
             <button id="addTaskButton" class="icon-button">+</button>
         </div>
         
         <ul id="taskList"></ul>
+
+         <!-- Modal para a descrição da tarefa -->
+    <div id="descriptionModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span> <!-- Botão de fechar -->
+            <p id="modalDescriptionText"></p> <!-- Texto da descrição será inserido aqui -->
+        </div>
+    </div>
+
     </div>
     <script src="script.js"></script>
     <div class="footer">
